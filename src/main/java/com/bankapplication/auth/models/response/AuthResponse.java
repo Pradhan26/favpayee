@@ -5,12 +5,14 @@ public class AuthResponse {
 
     private String customerId;
     private String token;
+    private String name;
 
     public AuthResponse() {}
 
-    public AuthResponse(String customerId, String token) {
+    public AuthResponse(String customerId, String token, String name) {
         this.customerId = customerId;
         this.token = token;
+        this.name = name;
     }
 
     public String getCustomerId() { return customerId; }
@@ -18,4 +20,12 @@ public class AuthResponse {
 
     public String getToken() { return token; }
     public void setToken(String token) { this.token = token; }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

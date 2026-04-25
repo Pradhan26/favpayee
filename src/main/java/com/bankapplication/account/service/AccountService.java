@@ -1,5 +1,7 @@
 package com.bankapplication.account.service;
 
+import com.bankapplication.auth.service.CustomerService;
+import com.bankapplication.bank.service.BankService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,9 +17,13 @@ public class AccountService {
 
     private static final long MAX_FAVORITES = 20;
     private final AccountRepository accountRepository;
-
-    public AccountService(AccountRepository accountRepository) {
+    private final CustomerService  customerService;
+    private final BankService bankService;
+    public AccountService(AccountRepository accountRepository,BankService bankService,CustomerService  customerService
+         ) {
+        this.bankService = bankService;
         this.accountRepository = accountRepository;
+        this.customerService=customerService;
     }
 
     public AccountResponse createAccount(String customerId, AccountRequest accountRequest) {
@@ -41,7 +47,8 @@ public class AccountService {
         account.setCustomerId(customerId);
         account.setAccountName(accountRequest.getAccountName());
         account.setIbanNumber(accountRequest.getIban());
-
+        account.setBankCode(Integer.parseInt(accountRequest.getIban().substring(4, 8)));
+        account.setBankName(bankService.getBankByCode(accountRequest.getIban().substring(4, 8)).getBankName());
         Account savedAccount = accountRepository.save(account);
         return convertToResponse(savedAccount);
     }
@@ -92,6 +99,7 @@ public class AccountService {
         response.setAccountName(account.getAccountName());
         response.setIban(account.getIbanNumber());
         response.setBankName(account.getBankName());
+        response.setCustomerName(customerService.getCustomerById(account.getCustomerId()).getName());
         return response;
     }
 }

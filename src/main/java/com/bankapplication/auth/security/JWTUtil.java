@@ -12,7 +12,7 @@ import java.util.Date;
 public class JWTUtil {
 
     private static final String SECRET =
-      "mySecretKeymySecretKeymySecretKey";
+      "4Wz0f0m4n1z1JjzX6W1kXlJr8H8c7zQ9S5pN2vT6mY0=";
 
     private final Key key =
       Keys.hmacShaKeyFor(
@@ -28,7 +28,7 @@ public class JWTUtil {
             .setExpiration(
                 new Date(
                     System.currentTimeMillis()
-                    +900000
+                    +9000000
                 )
             )
             .signWith(key)
