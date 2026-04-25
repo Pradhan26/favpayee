@@ -1,4 +1,4 @@
-package com.bankapplication.favpayee;
+package com.bankapplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
