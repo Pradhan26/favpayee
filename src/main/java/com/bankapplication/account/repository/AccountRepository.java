@@ -14,6 +14,4 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 	long countByCustomerId(String customerId);
 
 	boolean existsByCustomerIdAndIbanNumber(String customerId, String ibanNumber);
-
-	boolean existsByCustomerIdAndId(String customerId, Long id);
 }
