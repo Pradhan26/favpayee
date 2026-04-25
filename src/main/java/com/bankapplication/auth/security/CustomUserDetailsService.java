@@ -1,6 +1,6 @@
 package com.bankapplication.auth.security;
 
-import com.bankapplication.auth.models.Customer;
+import com.bankapplication.auth.entity.Customer;
 import com.bankapplication.auth.repository.CustomerRepository;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;

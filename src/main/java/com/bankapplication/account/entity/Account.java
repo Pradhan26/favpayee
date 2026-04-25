@@ -1,5 +1,8 @@
 package com.bankapplication.account.entity;
 
+
+import com.bankapplication.auth.entity.Customer;
+import com.bankapplication.bank.entity.Bank;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,6 +10,9 @@ import jakarta.persistence.*;
         name = "favorite_accounts",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = {"customer_id", "iban_number"})
+        },
+        indexes = {
+                @Index(name = "idx_customer_id", columnList = "customer_id")
         }
 )
 public class Account {
@@ -15,38 +21,32 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountId;
 
-    @Column(name = "customer_id", nullable = false, length = 50)
-    private String customerId;
-
     @Column(name = "account_name", nullable = false, length = 100)
     private String accountName;
 
     @Column(name = "iban_number", nullable = false, length = 34)
     private String ibanNumber;
 
-    @Column(name = "bank_code", nullable = false)
-    private int bankCode;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", nullable = false)
+    private Customer customer;
 
-    @Column(name = "bank_name", length = 100)
-    private String bankName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bank_code", referencedColumnName = "code", nullable = false)
+    private Bank bank;
 
     public Account() {}
 
-    public Account(Long accountId, String customerId, String accountName,
-                   String ibanNumber, int bankCode, String bankName) {
-        this.accountId = accountId;
-        this.customerId = customerId;
+    public Account(String accountName, String ibanNumber,
+                   Customer customer, Bank bank) {
         this.accountName = accountName;
         this.ibanNumber = ibanNumber;
-        this.bankCode = bankCode;
-        this.bankName = bankName;
+        this.customer = customer;
+        this.bank = bank;
     }
 
     public Long getAccountId() { return accountId; }
     public void setAccountId(Long accountId) { this.accountId = accountId; }
-
-    public String getCustomerId() { return customerId; }
-    public void setCustomerId(String customerId) { this.customerId = customerId; }
 
     public String getAccountName() { return accountName; }
     public void setAccountName(String accountName) { this.accountName = accountName; }
@@ -54,9 +54,9 @@ public class Account {
     public String getIbanNumber() { return ibanNumber; }
     public void setIbanNumber(String ibanNumber) { this.ibanNumber = ibanNumber; }
 
-    public int getBankCode() { return bankCode; }
-    public void setBankCode(int bankCode) { this.bankCode = bankCode; }
+    public Customer getCustomer() { return customer; }
+    public void setCustomer(Customer customer) { this.customer = customer; }
 
-    public String getBankName() { return bankName; }
-    public void setBankName(String bankName) { this.bankName = bankName; }
+    public Bank getBank() { return bank; }
+    public void setBank(Bank bank) { this.bank = bank; }
 }

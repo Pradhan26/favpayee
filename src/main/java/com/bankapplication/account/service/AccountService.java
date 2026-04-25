@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.bankapplication.account.entity.Account;
 import com.bankapplication.account.repository.AccountRepository;
-import com.bankapplication.dto.AccountRequest;
-import com.bankapplication.dto.AccountResponse;
+import com.bankapplication.account.dto.AccountRequest;
+import com.bankapplication.account.dto.AccountResponse;
 import com.bankapplication.exception.AccountException;
 
 @Service
@@ -76,7 +76,7 @@ public class AccountService {
             Account existing = accountRepository.findById(id)
                     .orElseThrow(() -> new AccountException("Account not found"));
 
-            if (!existing.getCustomerId().equals(customerId)) {
+            if (!existing.getCustomer().equals(customerId)) {
                 throw new AccountException("Account does not belong to this customer");
             }
 

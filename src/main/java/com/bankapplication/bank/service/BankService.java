@@ -11,7 +11,7 @@ public class BankService {
 
     private final BankRepository bankRepository;
 
-     BankService(BankRepository repository){
+    public BankService(BankRepository repository){
         this.bankRepository = repository;
     }
 
@@ -31,6 +31,9 @@ public class BankService {
     }
 
     private BankCodeResponseDto map(Bank bank){
-         return new BankCodeResponseDto(bank.bankName, bank.code);
+        return new BankCodeResponseDto(
+                bank.getBankName(),
+                bank.getCode()
+        );
     }
 }

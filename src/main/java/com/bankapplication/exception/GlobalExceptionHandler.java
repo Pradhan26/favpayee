@@ -1,6 +1,5 @@
 package com.bankapplication.exception;
 
-import com.bankapplication.dto.ErrorResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

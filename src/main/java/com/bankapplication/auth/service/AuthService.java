@@ -1,9 +1,9 @@
 package com.bankapplication.auth.service;
 
-import com.bankapplication.auth.models.response.AuthResponse;
+import com.bankapplication.auth.dto.response.AuthResponse;
 import com.bankapplication.auth.repository.CustomerRepository;
 import com.bankapplication.auth.security.JWTUtil;
-import com.bankapplication.auth.models.request.LoginRequest;
+import com.bankapplication.auth.dto.request.LoginRequest;
 import com.bankapplication.exception.AuthException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

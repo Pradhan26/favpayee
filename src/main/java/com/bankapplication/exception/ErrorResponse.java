@@ -1,4 +1,4 @@
-package com.bankapplication.dto;
+package com.bankapplication.exception;
 
 public class ErrorResponse {
 

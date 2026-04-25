@@ -1,4 +1,4 @@
-package com.bankapplication.auth.models.response;
+package com.bankapplication.auth.dto.response;
 
 
 public class AuthResponse {

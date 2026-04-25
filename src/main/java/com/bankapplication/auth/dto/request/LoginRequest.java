@@ -1,4 +1,4 @@
-package com.bankapplication.auth.models.request;
+package com.bankapplication.auth.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 

@@ -1,8 +1,8 @@
 package com.bankapplication.account.controller;
 
 import com.bankapplication.account.service.AccountService;
-import com.bankapplication.dto.AccountRequest;
-import com.bankapplication.dto.AccountResponse;
+import com.bankapplication.account.dto.AccountRequest;
+import com.bankapplication.account.dto.AccountResponse;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
