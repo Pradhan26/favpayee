@@ -1,25 +1,27 @@
 package com.bankapplication.auth.controller;
-import com.bankapplication.auth.models.request.CustomerLoginRequest;
 
 import com.bankapplication.auth.models.response.AuthResponse;
 import com.bankapplication.auth.service.AuthService;
 
-import lombok.RequiredArgsConstructor;
-
+import com.bankapplication.auth.models.request.LoginRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-@RequiredArgsConstructor
 public class AuthController {
 
     private final AuthService authService;
 
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
+
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(
-        @RequestBody CustomerLoginRequest request){
+        @RequestBody LoginRequest request){
 
         AuthResponse response =
             authService.login(request);
