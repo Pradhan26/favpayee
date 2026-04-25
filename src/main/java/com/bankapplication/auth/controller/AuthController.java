@@ -1,21 +1,20 @@
 package com.bankapplication.auth.controller;
 
 import com.bankapplication.auth.models.response.AuthResponse;
-import com.bankapplication.auth.service.AuthService;
+import com.bankapplication.auth.service.CustomerService;
 
 import com.bankapplication.auth.models.request.LoginRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 
-    private final AuthService authService;
+    private final CustomerService customerService;
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
+    public AuthController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
 
@@ -24,7 +23,7 @@ public class AuthController {
         @RequestBody LoginRequest request){
 
         AuthResponse response =
-            authService.login(request);
+            customerService.login(request);
 
         return ResponseEntity.ok(response);
     }

@@ -1,12 +1,11 @@
 package com.bankapplication.bank.controller;
 
 import com.bankapplication.bank.dto.BankCodeResponseDto;
+import com.bankapplication.bank.dto.BankRequest;
 import com.bankapplication.bank.service.BankService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/bank")
@@ -19,14 +18,12 @@ public class BankController {
     }
 
     @GetMapping("/{bankCode}")
-    public ResponseEntity<BankCodeResponseDto> getBankByCode(@PathVariable int bankCode) {
-        try {
-            return ResponseEntity.ok(this.bankService.getBankByCode(bankCode));
-        }
-        catch (IllegalArgumentException e){
-            //custom
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<BankCodeResponseDto> getBankByCode(@PathVariable String bankCode) {
+        return ResponseEntity.ok(this.bankService.getBankByCode(bankCode));
     }
 
+    @PostMapping()
+    public ResponseEntity<BankCodeResponseDto> addBank(@Valid @RequestBody BankRequest bankRequest) {
+        return ResponseEntity.ok(this.bankService.createBank(bankRequest));
+    }
 }

@@ -48,8 +48,8 @@ public class SecurityConfig {
                 auth
                     // public endpoints
                     .requestMatchers(
-                        "/auth/login",
-                        "/auth/register"
+                        "/api/auth/login"
+
                     )
                     .permitAll()
 
