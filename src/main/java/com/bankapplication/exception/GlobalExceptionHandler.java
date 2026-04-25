@@ -23,6 +23,14 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse(ex.getMessage()));
     }
 
+    //Bank Related Exceptions
+    @ExceptionHandler(BankException.class)
+    public ResponseEntity<ErrorResponse> handleBank(BankException ex) {
+        return ResponseEntity
+                .badRequest()
+                .body(new ErrorResponse(ex.getMessage()));
+    }
+
 
     //Other Exceptions
     @ExceptionHandler(Exception.class)
