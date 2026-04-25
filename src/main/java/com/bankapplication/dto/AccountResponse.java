@@ -12,7 +12,7 @@ public class AccountResponse {
     }
 
     public AccountResponse(Long id, String accountName, String iban,
-                           String bankName, String customerName) {
+            String bankName, String customerName) {
         this.id = id;
         this.accountName = accountName;
         this.iban = iban;
